@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#12314a">
+  <title>Iniciar sesión | IESTP Espinar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="login-page" id="login-page">
+    <section class="welcome-panel" aria-label="Información del instituto">
+      <div class="brand" aria-label="IESTP Espinar">
+        <img src="logo-iestp%20(1).png" alt="" class="brand-logo">
+        <span class="brand-copy">
+          <strong>IESTP Espinar</strong>
+          <span>Educación Superior</span>
+        </span>
+      </div>
+
+      <div class="welcome-copy">
+        <span class="eyebrow">MATRÍCULA DIGITAL</span>
+        <h1>Tu futuro profesional comienza aquí.</h1>
+        <p>Accede a una educación técnica de calidad y conviértete en el profesional que el país necesita.</p>
+        <ul class="benefits">
+          <li><span aria-hidden="true">✓</span> Proceso 100% digital</li>
+          <li><span aria-hidden="true">✓</span> Seguimiento en tiempo real</li>
+        </ul>
+      </div>
+
+      <p class="panel-footer">Instituto de Educación Superior Tecnológico Público · Espinar</p>
+    </section>
+
+    <section class="form-panel" aria-label="Acceso al sistema">
+      <div class="login-card">
+        <p class="form-eyebrow">BIENVENIDO DE NUEVO</p>
+        <h2>Inicia sesión</h2>
+        <p class="intro">Ingresa tus credenciales para continuar.</p>
+
+        <form id="login-form">
+          <div class="field">
+            <label for="username">Usuario institucional</label>
+            <div class="input-wrap">
+              <svg class="field-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M4.5 20a7.5 7.5 0 0 1 15 0"></path>
+              </svg>
+              <input id="username" name="username" type="text" placeholder="Ingresa tu usuario"
+                autocomplete="username" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="password">Contraseña</label>
+            <div class="input-wrap">
+              <svg class="field-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4" y="10" width="16" height="11" rx="2"></rect>
+                <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+              </svg>
+              <input id="password" name="password" type="password" placeholder="Ingresa tu contraseña"
+                autocomplete="current-password" required>
+              <button class="password-toggle" id="password-toggle" type="button"
+                aria-label="Mostrar contraseña" aria-pressed="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-options">
+            <label class="remember-option">
+              <input type="checkbox" name="remember">
+              <span>Recordarme</span>
+            </label>
+            <span class="credentials-note">¿Necesitas tus credenciales? Consulta con administración.</span>
+          </div>
+
+          <button class="submit-button" type="submit">
+            Ingresar al sistema
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6"></path>
+            </svg>
+          </button>
+          <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+        </form>
+
+        <aside class="credentials-info">
+          <strong>Acceso con credenciales asignadas</strong>
+          <span>El administrador crea tu cuenta y te entrega tu usuario y contraseña.</span>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <main class="admin-dashboard" id="admin-dashboard" hidden>
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <img src="logo-iestp%20(1).png" alt="" class="admin-logo">
+        <span><strong>Instituto</strong><small>Panel administrativo</small></span>
+      </div>
+      <nav class="admin-nav" id="admin-navigation" aria-label="Navegación administrativa">
+        <p class="admin-nav-title">ADMINISTRACIÓN</p>
+        <a class="admin-nav-link is-active" href="#panel-general" data-title="Panel general" aria-current="page">
+          <svg class="nav-symbol" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+          <span>Panel general</span>
+        </a>
+        <a class="admin-nav-link" href="#matriculas-recientes" data-title="Matrículas">
+          <svg class="nav-symbol" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l5 5v13H6z"></path><path d="M14 3v5h5M9 13h7M9 17h7"></path></svg>
+          <span>Matrículas</span><span class="nav-count" id="enrollment-count">1</span>
+        </a>
+        <a class="admin-nav-link" href="#estudiantes" data-title="Estudiantes">
+          <svg class="nav-symbol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="4"></circle><path d="M2 21a7 7 0 0 1 14 0M16 4a4 4 0 0 1 0 8M18 14a6 6 0 0 1 4 6"></path></svg>
+          <span>Estudiantes</span>
+        </a>
+        <a class="admin-nav-link" href="#ocupacion-carreras" data-title="Carreras">
+          <svg class="nav-symbol" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="1"></rect><path d="M8 18h8"></path></svg>
+          <span>Carreras</span>
+        </a>
+        <a class="admin-nav-link" href="#reportes" data-title="Reportes">
+          <svg class="nav-symbol" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h18M6 17V9M12 17V4M18 17v-6"></path></svg>
+          <span>Reportes</span>
+        </a>
+        <a class="admin-nav-link" href="#configuracion" data-title="Configuración">
+          <svg class="nav-symbol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.7a8 8 0 0 1-1.7 1l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-1.7-1l-1.7.7-1.4-2.4L7.3 15a8 8 0 0 1 0-2l-1.4-1.1 1.4-2.4 1.7.7a8 8 0 0 1 1.7-1l.3-1.8h2.8l.3 1.8a8 8 0 0 1 1.7 1l1.7-.7 1.4 2.4-1.4 1.1a8 8 0 0 1-.1 2Z"></path></svg>
+          <span>Configuración</span>
+        </a>
+        <a class="admin-nav-link" href="#salir" data-title="Salir" data-action="logout">
+          <svg class="nav-symbol" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M21 3v18"></path></svg>
+          <span>Salir</span>
+        </a>
+      </nav>
+      <div class="admin-sidebar-profile">
+        <span class="admin-avatar admin-avatar-blue">AR</span>
+        <span><strong>Andrés Ramírez</strong><small>Administrador</small></span>
+        <button class="admin-icon-button" id="admin-logout" type="button" aria-label="Volver al inicio de sesión">↪</button>
+      </div>
+    </aside>
+
+    <button class="admin-menu-backdrop" id="admin-menu-backdrop" type="button" aria-label="Cerrar menú"></button>
+    <div class="admin-content">
+      <header class="admin-topbar">
+        <button class="admin-menu-toggle" id="admin-menu-toggle" type="button"
+          aria-label="Abrir menú de administración" aria-controls="admin-navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="admin-topbar-heading">        <span>Panel administrativo</span><strong>Panel general</strong></div>
+        <div class="admin-topbar-user">
+          <button class="admin-bell" type="button" aria-label="Notificaciones">♧<i></i></button>
+          <span class="admin-avatar admin-avatar-blue">AR</span>
+          <span class="admin-topbar-name"><strong>Andrés Ramírez</strong><small>Administrador</small></span>
+        </div>
+      </header>
+
+      <div class="admin-workspace">
+        <section class="admin-view" id="panel-general">
+        <section class="admin-page-heading" id="resumen">
+          <div>
+            <p class="admin-eyebrow">RESUMEN DEL PERIODO 2025-I</p>
+            <h1>Panel general</h1>
+            <p>Supervisa y gestiona el proceso de matrícula desde un solo lugar.</p>
+          </div>
+          <button class="admin-primary-button" id="new-enrollment" type="button"><span>＋</span> Nueva matrícula</button>
+        </section>
+
+        <section class="admin-stats" aria-label="Resumen de matrículas">
+          <article class="admin-stat"><span class="admin-stat-icon icon-blue">♧</span><div><small>Total postulantes</small><strong id="stat-applicants">1244</strong><em>Periodo actual</em></div></article>
+          <article class="admin-stat"><span class="admin-stat-icon icon-green">✓</span><div><small>Matrículas aprobadas</small><strong id="stat-approved">842</strong><em>Periodo actual</em></div></article>
+          <article class="admin-stat"><span class="admin-stat-icon icon-orange">▤</span><div><small>Pendientes de revisión</small><strong id="stat-review">55</strong><em>Requieren atención</em></div></article>
+          <article class="admin-stat"><span class="admin-stat-icon icon-purple">▣</span><div><small>Vacantes disponibles</small><strong id="stat-vacancies">75</strong><em>5 carreras activas</em></div></article>
+        </section>
+        </section>
+
+        <section class="admin-view" id="matriculas-recientes" hidden>
+          <section class="admin-card enrollment-card">
+            <div class="admin-card-heading">
+              <div><h2>Matrículas recientes</h2><p>Gestiona las últimas solicitudes registradas.</p></div>
+              <button class="admin-primary-button" id="new-enrollment-from-list" type="button">＋ Nueva matrícula</button>
+            </div>
+            <div class="admin-table-tools">
+              <label class="admin-search"><span aria-hidden="true">⌕</span><span class="visually-hidden">Buscar estudiante</span><input id="admin-search" type="search" placeholder="Buscar estudiante, DNI o código..."></label>
+              <label class="visually-hidden" for="admin-filter">Filtrar matrículas</label>
+              <select id="admin-filter"><option value="todos">Todos</option><option value="pendiente">Pendiente del postulante</option><option value="observada">Observada</option><option value="revision">En revisión</option><option value="aprobada">Aprobada</option></select>
+            </div>
+            <div class="admin-table-scroll">
+              <table class="admin-table">
+                <thead><tr><th>Estudiante</th><th>Carrera</th><th>Fecha</th><th>Estado</th><th>Acción</th></tr></thead>
+                <tbody id="admin-enrollment-rows">
+                  <tr data-status="pendiente" data-search="maria castillo mat-00128 74839261 apsti">
+                    <td><span class="admin-student"><i>MC</i><span><strong>María Castillo</strong><small>MAT-00128 · DNI 74839261</small></span></span></td><td>APSTI</td><td>18 Mar, 2025</td><td><span class="admin-status status-pending">Pendiente</span></td>
+                    <td><span class="admin-actions"><button class="admin-row-button approve-button" type="button" aria-label="Aprobar matrícula de María Castillo" title="Aprobar">✓</button><button class="admin-row-button detail-button" type="button" aria-label="Ver matrícula de María Castillo" title="Ver detalles">◉</button></span></td>
+                  </tr>
+                  <tr data-status="aprobada" data-search="luis ramirez mat-00127 70619428 electronica industrial">
+                    <td><span class="admin-student"><i>LR</i><span><strong>Luis Ramírez</strong><small>MAT-00127 · DNI 70619428</small></span></span></td><td>Electrónica Industrial</td><td>18 Mar, 2025</td><td><span class="admin-status status-approved">Aprobada</span></td>
+                    <td><span class="admin-actions"><button class="admin-row-button approve-button is-approved" type="button" aria-label="Matrícula de Luis Ramírez aprobada" disabled>✓</button><button class="admin-row-button detail-button" type="button" aria-label="Ver matrícula de Luis Ramírez">◉</button></span></td>
+                  </tr>
+                  <tr data-status="revision" data-search="ana torres mat-00126 72945106 produccion agropecuaria">
+                    <td><span class="admin-student"><i>AT</i><span><strong>Ana Torres</strong><small>MAT-00126 · DNI 72945106</small></span></span></td><td>Producción Agropecuaria</td><td>17 Mar, 2025</td><td><span class="admin-status status-review">En revisión</span></td>
+                    <td><span class="admin-actions"><button class="admin-row-button approve-button" type="button" aria-label="Aprobar matrícula de Ana Torres">✓</button><button class="admin-row-button detail-button" type="button" aria-label="Ver matrícula de Ana Torres">◉</button></span></td>
+                  </tr>
+                  <tr data-status="aprobada" data-search="diego vargas mat-00125 68432017 operaciones mineras">
+                    <td><span class="admin-student"><i>DV</i><span><strong>Diego Vargas</strong><small>MAT-00125 · DNI 68432017</small></span></span></td><td>Operaciones Mineras</td><td>17 Mar, 2025</td><td><span class="admin-status status-approved">Aprobada</span></td>
+                    <td><span class="admin-actions"><button class="admin-row-button approve-button is-approved" type="button" aria-label="Matrícula de Diego Vargas aprobada" disabled>✓</button><button class="admin-row-button detail-button" type="button" aria-label="Ver matrícula de Diego Vargas">◉</button></span></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="admin-empty" id="admin-empty" hidden>No se encontraron matrículas con esos criterios.</p>
+            </div>
+          </section>
+        </section>
+
+        <section class="admin-view" id="ocupacion-carreras" hidden>
+          <section class="admin-card occupation-card">
+            <div class="admin-card-heading"><div><h2>Ocupación por carrera</h2><p>Vacantes del periodo actual.</p></div></div>
+            <div class="admin-career-list">
+              <div class="admin-career" data-career-code="APSTI"><p><span>Arquitectura de Plataformas y Servicios de TI</span><strong>82%</strong></p><i><b style="width:82%"></b></i><small>18 vacantes disponibles</small></div>
+              <div class="admin-career" data-career-code="EI"><p><span>Electrónica Industrial</span><strong>68%</strong></p><i><b style="width:68%"></b></i><small>12 vacantes disponibles</small></div>
+              <div class="admin-career" data-career-code="MP"><p><span>Mecánica de Producción</span><strong>74%</strong></p><i><b style="width:74%"></b></i><small>15 vacantes disponibles</small></div>
+              <div class="admin-career" data-career-code="OM"><p><span>Operaciones Mineras</span><strong>91%</strong></p><i><b style="width:91%"></b></i><small>9 vacantes disponibles</small></div>
+              <div class="admin-career" data-career-code="PA"><p><span>Producción Agropecuaria</span><strong>57%</strong></p><i><b style="width:57%"></b></i><small>21 vacantes disponibles</small></div>
+            </div>
+          </section>
+        </section>
+
+        <section class="admin-view admin-card admin-module-card" id="estudiantes" hidden>
+          <div class="admin-card-heading">
+            <div><h2>Estudiantes</h2><p>Consulta los estudiantes registrados en el periodo.</p></div>
+          </div>
+          <label class="admin-search admin-directory-search">
+            <span aria-hidden="true">⌕</span>
+            <span class="visually-hidden">Buscar estudiante registrado</span>
+            <input id="directory-search" type="search" placeholder="Buscar por nombre, DNI o código...">
+          </label>
+          <div class="admin-table-scroll">
+            <table class="admin-table">
+              <thead><tr><th>Estudiante</th><th>Código</th><th>DNI</th><th>Carrera</th><th>Estado</th></tr></thead>
+              <tbody id="student-directory-rows">
+                <tr data-search="maria castillo mat-00128 74839261 apsti">
+                  <td><span class="admin-student"><i>MC</i><span><strong>María Castillo</strong><small>Estudiante</small></span></span></td><td>MAT-00128</td><td>74839261</td><td>APSTI</td><td><span class="admin-status status-approved">Activo</span></td>
+                </tr>
+                <tr data-search="luis ramirez mat-00127 70619428 electronica industrial">
+                  <td><span class="admin-student"><i>LR</i><span><strong>Luis Ramírez</strong><small>Estudiante</small></span></span></td><td>MAT-00127</td><td>70619428</td><td>Electrónica Industrial</td><td><span class="admin-status status-approved">Activo</span></td>
+                </tr>
+                <tr data-search="ana torres mat-00126 72945106 produccion agropecuaria">
+                  <td><span class="admin-student"><i>AT</i><span><strong>Ana Torres</strong><small>Estudiante</small></span></span></td><td>MAT-00126</td><td>72945106</td><td>Producción Agropecuaria</td><td><span class="admin-status status-approved">Activo</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="admin-empty" id="directory-empty" hidden>No se encontraron estudiantes con esos datos.</p>
+          </div>
+        </section>
+
+        <section class="admin-view admin-card admin-module-card" id="reportes" hidden>
+          <div class="admin-card-heading">
+            <div><h2>Reportes</h2><p>Resumen de resultados del periodo 2025-I.</p></div>
+          </div>
+          <div class="admin-report-grid">
+            <article><span>Total de postulantes</span><strong id="report-applicants">1244</strong></article>
+            <article><span>Matrículas aprobadas</span><strong id="report-approved">842</strong></article>
+            <article><span>En revisión</span><strong id="report-review">55</strong></article>
+          </div>
+          <div class="admin-report-progress">
+            <div><span>Aprobadas</span><span id="report-approved-percent">67%</span><i><b id="report-approved-bar" style="width:67%"></b></i></div>
+            <div><span>Pendientes de revisión</span><span id="report-review-percent">4%</span><i><b id="report-review-bar" style="width:4%"></b></i></div>
+            <div><span>Vacantes disponibles</span><span id="report-vacancies-value">75</span><i><b id="report-vacancies-bar" style="width:24%"></b></i></div>
+          </div>
+        </section>
+
+        <section class="admin-view admin-card admin-module-card" id="configuracion" hidden>
+          <div class="admin-card-heading">
+            <div><h2>Configuración</h2><p>Parámetros generales del periodo de matrícula.</p></div>
+          </div>
+          <form class="admin-settings-form" id="admin-settings-form">
+            <label>Periodo académico
+              <select name="period">
+                <option>2025-I</option>
+                <option>2025-II</option>
+              </select>
+            </label>
+            <label>Estado de matrícula
+              <select name="enrollment-status">
+                <option>Abierto</option>
+                <option>Cerrado</option>
+              </select>
+            </label>
+            <label>Vacantes disponibles
+              <input name="vacancies" type="number" min="0" value="75">
+            </label>
+            <button class="admin-primary-button" type="submit">Guardar configuración</button>
+            <p class="admin-settings-message" id="settings-message" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+        <p class="admin-feedback" id="admin-feedback" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+    <dialog class="admin-dialog review-dialog" id="admin-dialog">
+      <form method="dialog"><button class="admin-dialog-close" aria-label="Cerrar">×</button></form>
+      <p class="admin-eyebrow" id="admin-dialog-eyebrow">DETALLE DE SOLICITUD</p>
+      <h2 id="admin-dialog-name"></h2>
+      <p id="admin-dialog-info"></p>
+      <div class="admin-review-record" id="admin-review-record"></div>
+      <section class="admin-review-documents" id="admin-review-documents" hidden>
+        <h3>Documentos adjuntos</h3>
+        <div id="admin-review-document-links"></div>
+        <p class="admin-review-document-empty" id="admin-review-document-message"></p>
+      </section>
+      <label class="admin-observation-field" id="admin-observation-field" hidden>
+        Motivo de observación
+        <textarea id="admin-observation" rows="3" placeholder="Indica qué dato o documento debe corregir el postulante."></textarea>
+      </label>
+      <div class="admin-review-actions" id="admin-review-actions" hidden>
+        <button class="admin-secondary-button" id="admin-request-correction" type="button">Solicitar corrección</button>
+        <button class="admin-primary-button" id="admin-approve-application" type="button">Aprobar matrícula</button>
+      </div>
+    </dialog>
+    <dialog class="admin-dialog enrollment-dialog" id="new-enrollment-dialog">
+      <form method="dialog"><button class="admin-dialog-close" aria-label="Cerrar">×</button></form>
+      <p class="admin-eyebrow">REGISTRO DE ESTUDIANTE</p>
+      <h2>Nueva matrícula</h2>
+      <p>Registra los datos iniciales y asigna las credenciales para que el estudiante complete su proceso.</p>
+      <form id="new-enrollment-form" class="enrollment-form">
+        <label>Nombres<input name="firstName" required autocomplete="given-name"></label>
+        <label>Apellidos<input name="lastName" required autocomplete="family-name"></label>
+        <label>DNI<input name="dni" required inputmode="numeric" pattern="[0-9]{8}" maxlength="8" autocomplete="off"></label>
+        <label>Correo electrónico<input name="email" type="email" required autocomplete="email"></label>
+        <label>Usuario asignado<input name="username" required minlength="4" autocomplete="off"></label>
+        <label>Contraseña asignada<input name="password" type="password" required minlength="8" autocomplete="new-password"></label>
+        <p class="enrollment-form-message" id="enrollment-form-message" role="status" aria-live="polite"></p>
+        <button class="admin-primary-button" type="submit">Crear matrícula y cuenta</button>
+      </form>
+    </dialog>
+    <dialog class="admin-dialog credential-dialog" id="created-account-dialog">
+      <form method="dialog"><button class="admin-dialog-close" aria-label="Cerrar">×</button></form>
+      <p class="admin-eyebrow">CUENTA CREADA</p>
+      <h2 id="created-account-name"></h2>
+      <p>Entrega estas credenciales al estudiante para que complete su matrícula:</p>
+      <dl><div><dt>Usuario</dt><dd id="created-account-username"></dd></div><div><dt>Contraseña</dt><dd id="created-account-password"></dd></div></dl>
+      <p class="credential-warning">Guárdalas y entrégalas al estudiante de forma segura. Esta demostración las almacena solo en este navegador.</p>
+    </dialog>
+  </main>
+  <main class="student-dashboard" id="student-dashboard" hidden>
+    <aside class="student-sidebar">
+      <div class="student-brand">
+        <img src="logo-iestp%20(1).png" alt="" class="admin-logo">
+        <span><strong>Instituto</strong><small>Educación Superior</small></span>
+      </div>
+      <nav class="student-nav" id="student-navigation" aria-label="Navegación del estudiante">
+        <p class="admin-nav-title">MENÚ PRINCIPAL</p>
+        <a class="student-nav-link is-active" href="#estudiante-inicio" data-title="Inicio"><span aria-hidden="true">▦</span>Inicio</a>
+        <a class="student-nav-link" href="#estudiante-carreras" data-title="Carreras"><span aria-hidden="true">▣</span>Carreras</a>
+        <a class="student-nav-link" href="#estudiante-matricula" data-title="Mi matrícula"><span aria-hidden="true">▤</span>Mi matrícula<span class="nav-count" id="student-nav-count" hidden>1</span></a>
+        <a class="student-nav-link" href="#estudiante-perfil" data-title="Mi perfil"><span aria-hidden="true">♙</span>Mi perfil</a>
+        <a class="student-nav-link student-logout-link" href="#salir" data-action="logout"><span aria-hidden="true">↪</span>Salir</a>
+      </nav>
+      <a class="student-help-link" href="mailto:matricula@iestpespinar.edu.pe">Centro de ayuda</a>
+      <div class="student-sidebar-profile">
+        <span class="admin-avatar admin-avatar-blue" id="student-avatar">ES</span>
+        <span><strong id="student-sidebar-name">Estudiante</strong><small>Postulante</small></span>
+        <button class="admin-icon-button" id="student-logout" type="button" aria-label="Cerrar sesión">↪</button>
+      </div>
+    </aside>
+    <button class="admin-menu-backdrop student-menu-backdrop" id="student-menu-backdrop" type="button" aria-label="Cerrar menú"></button>
+    <div class="student-content">
+      <header class="student-topbar">
+        <button class="admin-menu-toggle student-menu-toggle" id="student-menu-toggle" type="button" aria-label="Abrir menú del estudiante" aria-controls="student-navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+        <div class="admin-topbar-heading"><span>PROCESO DE MATRÍCULA</span><strong>Periodo académico 2025-I</strong></div>
+        <div class="student-deadline"><span aria-hidden="true">▣</span><div><small>Cierre de matrícula</small><strong>28 de marzo, 2025</strong></div></div>
+      </header>
+      <div class="student-workspace">
+        <section class="student-view" id="estudiante-inicio">
+          <div class="student-page-heading">
+            <div><p class="admin-eyebrow">PORTAL DEL ESTUDIANTE</p><h1>Buenas tardes, <span data-student-first-name></span></h1><p>Completa tu proceso de matrícula y empieza a construir tu futuro profesional.</p></div>
+            <span class="student-enrollment-status"><i></i><span data-student-status>Matrícula en proceso</span></span>
+          </div>
+          <section class="student-progress-card" aria-label="Progreso de matrícula"></section>
+          <section class="student-careers-section">
+            <div class="student-section-heading"><div><h2>Elige tu carrera profesional</h2><p>Conoce nuestra oferta académica y selecciona la opción que más se adapte a ti.</p></div>
+              <label class="student-search"><span aria-hidden="true">⌕</span><span class="visually-hidden">Buscar carrera</span><input id="student-career-search" type="search" placeholder="Buscar carrera..."></label>
+            </div>
+            <div class="student-career-filters" aria-label="Filtrar carreras">
+              <button type="button" class="is-selected" data-career-filter="todas">Todas</button><button type="button" data-career-filter="vacantes">Vacantes</button><button type="button" data-career-filter="APSTI">APSTI</button><button type="button" data-career-filter="EI">EI</button><button type="button" data-career-filter="MP">MP</button><button type="button" data-career-filter="OM">OM</button><button type="button" data-career-filter="PA">PA</button>
+            </div>
+            <div class="student-career-grid" id="student-career-grid"></div>
+          </section>
+          <footer class="student-footer"><span>© 2025 Instituto de Educación Superior</span><span>Privacidad　 Términos　 Soporte</span></footer>
+        </section>
+        <section class="student-view" id="estudiante-carreras" hidden>
+          <div class="student-page-heading"><div><p class="admin-eyebrow">PORTAL DEL ESTUDIANTE</p><h1>Carreras</h1><p>Completa tu proceso de matrícula y elige tu carrera profesional.</p></div><span class="student-enrollment-status"><i></i><span data-student-status>Matrícula en proceso</span></span></div>
+          <section class="student-careers-section"><div class="student-section-heading"><div><h2>Oferta académica</h2><p>Selecciona una carrera para continuar con tu matrícula.</p></div><label class="student-search"><span aria-hidden="true">⌕</span><span class="visually-hidden">Buscar carrera</span><input class="student-career-search-secondary" type="search" placeholder="Buscar carrera..."></label></div><div class="student-career-grid" id="student-career-grid-secondary"></div></section>
+        </section>
+        <section class="student-view" id="estudiante-matricula" hidden>
+          <div class="student-page-heading"><div><p class="admin-eyebrow">PORTAL DEL ESTUDIANTE</p><h1>Mi matrícula</h1><p>Revisa el estado de tu solicitud y los próximos pasos.</p></div><span class="student-enrollment-status"><i></i><span data-student-status>Matrícula en proceso</span></span></div>
+          <section class="student-progress-card" aria-label="Progreso de matrícula"></section>
+          <div class="student-enrollment-layout">
+            <section class="student-application-card">
+              <p class="admin-eyebrow">SOLICITUD ACTUAL</p>
+              <h2 id="student-application-career">Aún no elegiste una carrera</h2>
+              <p id="student-application-code"></p>
+              <div class="student-application-meta">
+                <div><small>Periodo</small><strong>2025-I</strong></div>
+                <div><small>Turno</small><strong>Diurno</strong></div>
+                <div><small>Estado</small><span class="admin-status status-review" id="student-application-status">En proceso</span></div>
+              </div>
+              <div class="student-observation" id="student-observation" hidden>
+                <strong>Corrección solicitada por administración</strong>
+                <p id="student-observation-text"></p>
+              </div>
+              <div class="student-document-upload">
+                <h3>Documentos requeridos</h3>
+                <label>Documento de identidad (PDF, JPG o PNG)
+                  <input id="student-identity-file" type="file" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+                  <small id="student-identity-file-name">Aún no adjuntado</small>
+                </label>
+                <label>Documento académico (PDF, JPG o PNG)
+                  <input id="student-academic-file" type="file" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+                  <small id="student-academic-file-name">Aún no adjuntado</small>
+                </label>
+                <p class="student-document-note">Archivos de demostración: se guardan en este navegador y no se envían a un servidor.</p>
+                <p class="student-document-message" id="student-document-message" role="status" aria-live="polite"></p>
+              </div>
+              <label class="student-document-check"><input id="student-documents-check" type="checkbox" disabled><span>Confirmo que los documentos adjuntos son correctos.</span></label>
+              <button class="admin-primary-button" id="student-confirm-enrollment" type="button" disabled>Enviar solicitud</button>
+              <p class="student-confirm-message" id="student-confirm-message" role="status" aria-live="polite"></p>
+            </section>
+            <section class="student-next-steps"><h2>Próximos pasos</h2><ol id="student-next-steps"></ol></section>
+          </div>
+          <section class="student-ticket" id="student-ticket" hidden>
+            <header class="student-ticket-header">
+              <img src="logo-iestp%20(1).png" alt="" class="student-ticket-logo">
+              <div><strong>IESTP ESPINAR</strong><small>Instituto de Educación Superior Tecnológico Público</small></div>
+              <span class="student-ticket-approved">APROBADA</span>
+            </header>
+            <p class="admin-eyebrow">COMPROBANTE DE MATRÍCULA</p>
+            <h2>Boleta de matrícula</h2>
+            <p class="student-ticket-intro">Se deja constancia de que el postulante ha sido matriculado en el periodo académico indicado.</p>
+            <div class="student-ticket-data">
+              <div><small>Estudiante</small><strong id="ticket-student-name"></strong></div>
+              <div><small>DNI</small><strong id="ticket-student-dni"></strong></div>
+              <div><small>Código de matrícula</small><strong id="ticket-enrollment-code"></strong></div>
+              <div><small>Carrera profesional</small><strong id="ticket-career"></strong></div>
+              <div><small>Periodo académico</small><strong>2025-I</strong></div>
+              <div><small>Turno</small><strong>Diurno</strong></div>
+              <div><small>Fecha de aprobación</small><strong id="ticket-approval-date"></strong></div>
+              <div><small>Estado</small><strong>Aprobada</strong></div>
+            </div>
+            <p class="student-ticket-note">Este comprobante es parte de la demostración del sistema; la validez oficial depende del instituto.</p>
+            <button class="admin-primary-button student-ticket-print" id="student-ticket-print" type="button">Imprimir / Guardar como PDF</button>
+            <p class="student-ticket-hint">Para descargarlo, selecciona «Guardar como PDF» en las opciones de impresión.</p>
+          </section>
+        </section>
+        <section class="student-view" id="estudiante-perfil" hidden>
+          <div class="student-page-heading"><div><p class="admin-eyebrow">PORTAL DEL ESTUDIANTE</p><h1>Mi perfil</h1><p>Consulta y actualiza tus datos personales.</p></div><span class="student-enrollment-status"><i></i><span data-student-status>Matrícula en proceso</span></span></div>
+          <section class="student-profile-card"><div class="student-section-heading"><div><h2>Datos personales</h2><p>Mantén actualizada tu información de contacto.</p></div></div>
+            <form id="student-profile-form" class="student-profile-form">
+              <label>Nombres<input name="firstName" required readonly></label><label>Apellidos<input name="lastName" required readonly></label>
+              <label>Documento de identidad<input name="dni" required readonly></label><label>Correo electrónico<input name="email" type="email" required></label>
+              <label>Teléfono<input name="phone" type="tel" inputmode="tel" placeholder="987 654 321" required></label><label>Distrito<input name="district" placeholder="Escribe tu distrito" required></label>
+              <button class="admin-primary-button" type="submit">Guardar cambios</button><p class="student-profile-message" id="student-profile-message" role="status" aria-live="polite"></p>
+            </form>
+          </section>
+        </section>
+      </div>
+    </div>
+    <dialog class="admin-dialog student-confirm-dialog" id="student-confirm-dialog"><form method="dialog"><button class="admin-dialog-close" aria-label="Cerrar">×</button></form><span class="student-success-mark" aria-hidden="true">✓</span><p class="admin-eyebrow">SOLICITUD REGISTRADA</p><h2>¡Tu solicitud fue enviada!</h2><p>Registramos tu solicitud para <strong id="student-confirm-career"></strong>. Administración revisará tus datos y documentos antes de aprobar la matrícula.</p><button class="admin-primary-button" id="student-confirm-dialog-button" type="button">Ir a mi matrícula</button></dialog>
+    <p class="admin-feedback student-feedback" id="student-feedback" role="status" aria-live="polite"></p>
+  </main>
+  <script src="js.js"></script>
+</body>
+</html>
